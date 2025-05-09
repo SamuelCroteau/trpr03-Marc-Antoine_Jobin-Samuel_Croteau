@@ -12,7 +12,11 @@
     {
       "userId": 1,
       "title": "bigbug visuel",
+      "description": "there is a bug in blablablablablablablablablablalbalbalbalbalbalbalbalbalbla and :(",
+      "stepsToReproduce": "1. open the app 2. gloogloogloo 3. :)",
+      "priority": "low",
       "category": "visual",
+      "visibility": "public",
       "id": 1
     }
   ]

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { useAuthStore } from '../stores/authStore'
+import { useProfileStore } from '../stores/profileStore'
 import { useRouter } from 'vue-router'
 
 const authStore = useAuthStore()
@@ -45,6 +46,14 @@ function logout() {
         >
           Profile
         </RouterLink>
+        <RouterLink
+          class="nav-link"
+          :class="{ active: $route.name == 'TesterManager' }"
+          v-if="isLoggedIn && profileStore.isLeadDev" 
+          :to="{ name: 'TesterManager' }"
+        >
+          Gestion des testeurs
+        </RouterLink> <!-- TODO : La page TesterManager n'est accessible que si l'utilisateur est leadDev (MODIFICATIONS PEUT-ETRE NECESSAIRE) -->
       </div>
       <div class="d-flex">
         <div class="navbar-nav ml-auto">

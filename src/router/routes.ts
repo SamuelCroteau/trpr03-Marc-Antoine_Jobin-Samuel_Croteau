@@ -1,6 +1,7 @@
 import HomeView from '../views/HomeView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import LoginView from '../views/LoginView.vue'
+import TesterManagerView from '../views/TesterManagerView.vue'
 
 const routes = [
   {
@@ -25,6 +26,11 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginView
+  },,
+  {
+    path: '/testerManager',
+    name: 'TesterManager',
+    component: TesterManagerView
   },
   {
     path: '/:pathMatch(.*)*',

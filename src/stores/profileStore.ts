@@ -14,6 +14,9 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     onError.value = false
   }
 
+    //TODO ajouter isLeadDev (probablement)
+    //const isLeadDev = computed(() => {
+
   async function getProfile() {
     try {
       onError.value = false
