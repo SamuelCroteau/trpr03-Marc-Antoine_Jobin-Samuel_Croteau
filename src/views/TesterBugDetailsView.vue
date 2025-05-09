@@ -2,6 +2,15 @@
 import type { Bug } from '@/types/Bug';
 //TODO : Afficher le component bug SAM
 
+const bug = ref<Bug>({
+    id: 0,
+    title: '',
+    description: '',
+    stepsToReproduce: '',
+    priority: '',
+    category: ''
+});
+
 </script>
 <template>
     <div class="flex flex-col gap-4">
