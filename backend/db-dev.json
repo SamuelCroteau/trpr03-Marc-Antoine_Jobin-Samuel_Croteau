@@ -6,6 +6,13 @@
       "name": "Emmett Brown",
       "role": "leadDev",
       "id": 1
+    },
+    {
+      "email": "joe@bloe.com",
+      "password": "$2a$10$/U4TD6TdllwpkXLdBzoagepGDpOGcRFTS6VHAnYGNeCKsuhpEWmX2",
+      "name": "Joe Bloe",
+      "role": "tester",
+      "id": 2
     }
   ],
   "bugs": [
@@ -13,8 +20,18 @@
       "userId": 1,
       "title": "bigbug visuel",
       "description": "there is a bug in blablablablablablablablablablalbalbalbalbalbalbalbalbalbla and :(",
-      "stepsToReproduce": "1. open the app 2. gloogloogloo 3. :)",
+      "stepsToReproduce": "1. open the game 2. gloogloogloo 3. :)",
       "priority": "low",
+      "category": "visual",
+      "visibility": "public",
+      "id": 1
+    },
+    {
+      "userId": 2,
+      "title": "petit bug visuel",
+      "description": "there is a bug in blublublublublublublublublublublubblubblubblubblubblubu and :(",
+      "stepsToReproduce": "1. open the game 2. connect 3. :)",
+      "priority": "medium",
       "category": "visual",
       "visibility": "public",
       "id": 1

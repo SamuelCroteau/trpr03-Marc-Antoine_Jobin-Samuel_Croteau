@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref } from 'vue'
+import { ref, computed, type Ref } from 'vue'
 import { userService } from '../services/userService'
 import { useAuthStore } from './authStore'
 
@@ -14,14 +14,13 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     onError.value = false
   }
 
-    //TODO ajouter isLeadDev (probablement)
-    //const isLeadDev = computed(() => {
+    const isLeadDev = computed(() => email.value === 'test@test.com');
 
   async function getProfile() {
     try {
       onError.value = false
       const authStore = useAuthStore()
-      const userId = authStore.getUserId // Assuming getUserId is a computed or a ref inside authStore
+      const userId = authStore.getUserId
       const profile = await userService.getUserById(userId)
       _initializeProfile(profile)
     } catch (error) {
@@ -33,6 +32,10 @@ export const useProfileStore = defineStore('profileStoreId', () => {
     email, 
     name, 
     onError, 
-    getProfile 
+    getProfile,
+    isLeadDev,
+    _initializeProfile
   }
+  
 })
+
