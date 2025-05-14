@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import type { Bug } from '@/types/Bug';
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 //TODO : Afficher le component bug SAM
+const route = useRoute();
 
 const bug = ref<Bug>({
     title: '',
@@ -17,7 +19,8 @@ const bug = ref<Bug>({
 // A TESTER 
 fetchBug();
 async function fetchBug() {
-    const response = await fetch('http://localhost:3000/bug/1'); // faire en sorte de prendre l'id du bug dans l'url
+    const bugId = route.params.id;
+    const response = await fetch('http://localhost:3000/bug/${bugId}'); // faire en sorte de prendre l'id du bug dans l'url
     if (!response.ok) {
         throw new Error('Error when bug fetched');
     }

@@ -5,6 +5,8 @@ import TesterManagerView from '../views/TesterManagerView.vue'
 import TesterBugCreationView from '../views/TesterBugCreationView.vue'
 import DevBugCreationView from '../views/DevBugCreationView.vue'
 import TesterBugListView from '../views/TesterBugListView.vue'
+import DevBugListView from '../views/DevBugListView.vue'
+import DevBugDetailsView from '../views/DevBugDetailsView.vue'
 
 const routes = [
   {
@@ -46,12 +48,17 @@ const routes = [
     component: DevBugCreationView
   },
   {
-    path: '/DevBugList',
+    path: '/devBugList',
     name: 'DevBugList',
-    component: DevBugCreationView
+    component: DevBugListView
   },
   {
-    path: '/TesterBugList',
+    path: '/devBugDetails/:id',
+    name: 'DevBugDetails',
+    component: DevBugDetailsView
+  },
+  {
+    path: '/testerBugList',
     name: 'TesterBugList',
     component: TesterBugListView
   },
