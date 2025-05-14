@@ -5,7 +5,7 @@
   <div class="home">
     <h1>Accueil</h1>
     <p>Lead dev login: test@test.com et mdp: test
-      tester login: __________ et mdp: _____
+      tester login:  et mdp: 
     </p>
   </div>
 </template>
