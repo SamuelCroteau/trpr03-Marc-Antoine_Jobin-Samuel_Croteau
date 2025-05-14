@@ -1,6 +1,29 @@
 <script setup lang="ts">
 import type { Bug } from '@/types/Bug';
+import { ref } from 'vue';
+
 //TODO : Afficher le component bug SAM
+
+const bug = ref<Bug>({
+    title: '',
+    description: '',
+    stepsToReproduce: '',
+    priority: '',
+    category: '',
+    visibility: '',
+    userId: 0 
+});
+
+// A TESTER 
+fetchBug();
+async function fetchBug() {
+    const response = await fetch('http://localhost:3000/bug/1'); // faire en sorte de prendre l'id du bug dans l'url
+    if (!response.ok) {
+        throw new Error('Error when bug fetched');
+    }
+    const data = await response.json();
+    bug.value = data;
+}
 
 </script>
 <template>

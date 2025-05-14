@@ -2,6 +2,9 @@ import HomeView from '../views/HomeView.vue'
 import ProfileView from '../views/ProfileView.vue'
 import LoginView from '../views/LoginView.vue'
 import TesterManagerView from '../views/TesterManagerView.vue'
+import TesterBugCreationView from '../views/TesterBugCreationView.vue'
+import DevBugCreationView from '../views/DevBugCreationView.vue'
+import TesterBugListView from '../views/TesterBugListView.vue'
 
 const routes = [
   {
@@ -26,11 +29,31 @@ const routes = [
     path: '/login',
     name: 'Login',
     component: LoginView
-  },,
+  },
   {
     path: '/testerManager',
     name: 'TesterManager',
     component: TesterManagerView
+  },
+  {
+    path: '/testerBugCreation',
+    name: 'TesterBugCreation',
+    component: TesterBugCreationView
+  },
+  {
+    path: '/devBugCreation',
+    name: 'DevBugCreation',
+    component: DevBugCreationView
+  },
+  {
+    path: '/DevBugList',
+    name: 'DevBugList',
+    component: DevBugCreationView
+  },
+  {
+    path: '/TesterBugList',
+    name: 'TesterBugList',
+    component: TesterBugListView
   },
   {
     path: '/:pathMatch(.*)*',

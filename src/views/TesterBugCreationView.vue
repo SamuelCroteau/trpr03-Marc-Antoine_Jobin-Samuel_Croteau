@@ -1,25 +1,32 @@
 <script setup lang="ts">
 import type { Bug } from '@/types/Bug';
 import { ref } from 'vue';
-import { }
-
+import { useRouter } from 'vue-router';
+import { priority } from '@/const/priority';
+import { visibility } from '@/const/visibility';
 
 // TODO: MARC
-
+const router = useRouter();
 const bug = ref<Bug>({
     userId: 1,
     title: 'title',
     description: 'description',
     stepsToReproduce: 'stepsToReproduce',
-    priority: 'priority',
-    category: 'category',
-    visibility: 'visibility'
+    priority: 'Low',
+    category: 'Display',
+    visibility: 'public'
 });
+const categories = ref([]);
 const errorMessage = ref('');
+fetch('http://localhost:3000/categories')
+    .then(response => response.json())
+    .then(data => {
+        categories.value = data;
+    })
 
-const createBug = () => {
+            const createBug = async () => {
                 if (bug.value.title.trim() === '') {
-                    errorMessage.value = 'Un titre est requise.';
+                    errorMessage.value = 'Un titre est requis.';
                     return;
                 }
                 if(bug.value.description.trim() === '') {
@@ -33,6 +40,13 @@ const createBug = () => {
                 errorMessage.value = '';
                 //TODO envoyer tout ca dans la bd, ensuite router.push vers la liste de bugs
                 //TODO pas oublier le userId, prendre celui du user authentifie
+                const response = await fetch('http://localhost:3000/bugs', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(bug.value), // TODO changer prendre userId et potentiellement prendre infos en haut
+                });
                 router.push('/TesterBugList');
             };
 </script>
@@ -51,12 +65,22 @@ const createBug = () => {
                         <input type="text" placeholder="Steps to Reproduce" id="stepsToReproduce" v-model="bug.stepsToReproduce" />
                     </div>
                     <div>
-                        <select id="ship" v-model="bug.priority" >
-                            <option v-for="ship in ships" :key="ship.id" :value="ship.name">{{ ship.name }}</option>
+                        <select id="priority" v-model="bug.priority" >
+                            <option v-for="(option, key) in priority" :key="option.id" :value="option.value"></option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="category" v-model="bug.category">
+                            <option v-for="(category, index) in categories" :key="index" :value="category">{{ category }}</option>
+                        </select>
+                    </div>
+                    <div>
+                        <select id="visibility" v-model="bug.visibility" >
+                            <option v-for="(option, key) in priority" :key="option.id" :value="option.value"></option>
                         </select>
                     </div>
                     <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
-                    <button type="submit" class="btn btn-outline-warning">Commencer la partie</button>
+                    <button type="submit" class="btn btn-outline-warning">Soumettre le bug</button>
                 </form>
             </div>
         </template>
