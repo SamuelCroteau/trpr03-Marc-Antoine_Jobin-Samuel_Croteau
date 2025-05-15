@@ -13,6 +13,55 @@
       "name": "Joe Bloe",
       "role": "tester",
       "id": 2
+    },
+    {
+      "email": "test1234@test.com",
+      "password": "$2a$10$XGQi09DMvj3DbGCvIVYcferwvHIL7ca2noX78SyejQ1Y.0F/lAEVS",
+      "name": "john",
+      "role": "tester",
+      "id": 3
+    },
+    {
+      "email": "test@test.comd",
+      "password": "$2a$10$SasRwe7yI31zNStYymjF9u2Vf3KKwUEnCCh6zhwJxS4d5xXVjWwxa",
+      "name": "asd",
+      "role": "tester",
+      "id": 4
+    },
+    {
+      "email": "test@test.comf",
+      "password": "$2a$10$LW0oSMQbRTKq2KRVoAAjXOoPlu9dVE.dv0PKHDs6lIxsFlhis7crG",
+      "name": "FGHJ",
+      "role": "tester",
+      "id": 5
+    },
+    {
+      "email": "testeee@test.com",
+      "password": "$2a$10$2.decGaZYj15ge6dI76QHuR0YwBWQ/yLzGS5LS0qrylXovO.4cu0i",
+      "name": "joe",
+      "role": "tester",
+      "id": 6
+    },
+    {
+      "email": "wjv@hybi.com",
+      "password": "$2a$10$/JFPGRFuxTCLmdy9LrKgf.zviB2HPuy4En8nl4giFtDjQA48HFYHy",
+      "name": "ydidb",
+      "role": "tester",
+      "id": 7
+    },
+    {
+      "email": "test@test.coms",
+      "password": "$2a$10$OBByz0tSmQzK7mG7pb9heeamBdTHa4fOWiavo4TK2Ci625Qvf8Oza",
+      "name": "sdfs",
+      "role": "tester",
+      "id": 8
+    },
+    {
+      "email": "test@test.comm",
+      "password": "$2a$10$07eHmnlhkoZmqKdzwxfL9Of06slpzYFZdCHUgmen.D2wdwF.XDbI.",
+      "name": "sdf",
+      "role": "tester",
+      "id": 9
     }
   ],
   "bugs": [

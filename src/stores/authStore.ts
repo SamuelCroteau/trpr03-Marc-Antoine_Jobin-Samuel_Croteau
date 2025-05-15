@@ -4,7 +4,7 @@ import { authService } from '../services/authService'
 import { jwtDecode } from 'jwt-decode'
 
 interface DecodedToken {
-  sub: string
+  sub: string 
   exp: number
 }
 
@@ -15,9 +15,9 @@ export const useAuthStore = defineStore('authStoreId', () => {
   const isLoggedIn = computed(() => !!token.value)
     
   const getUserId = computed(() => {
-    if (!token.value) return ''
+    //if (!token.value) return null
     const payload: DecodedToken = jwtDecode(token.value)
-    return payload.sub
+    return Number(payload.sub)
   })
 
   const isTokenExpired = computed(() => {

@@ -55,6 +55,22 @@ function logout() {
         >
           Gestion des testeurs
         </RouterLink> <!-- TODO : La page TesterManager n'est accessible que si l'utilisateur est leadDev (MODIFICATIONS PEUT-ETRE NECESSAIRE) -->
+      <RouterLink
+          class="nav-link"
+          :class="{ active: $route.name == 'TesterBugCreation' }"
+          v-if="isLoggedIn && !profileStore.isLeadDev" 
+          :to="{ name: 'TesterBugCreation' }"
+        >
+          Signaler un bug
+        </RouterLink>
+        <RouterLink
+          class="nav-link"
+          :class="{ active: $route.name == 'DevBugCreation' }"
+          v-if="isLoggedIn && profileStore.isLeadDev" 
+          :to="{ name: 'DevBugCreation' }"
+        >
+          Signaler un bug
+        </RouterLink>
       </div>
       <div class="d-flex">
         <div class="navbar-nav ml-auto">

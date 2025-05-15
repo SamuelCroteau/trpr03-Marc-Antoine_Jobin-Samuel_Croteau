@@ -37,11 +37,13 @@ const routes = [
     name: 'TesterManager',
     component: TesterManagerView
   },
+  //MARC
   {
     path: '/testerBugCreation',
     name: 'TesterBugCreation',
     component: TesterBugCreationView
   },
+  //MARC
   {
     path: '/devBugCreation',
     name: 'DevBugCreation',
