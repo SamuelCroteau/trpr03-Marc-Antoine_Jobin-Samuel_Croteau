@@ -71,10 +71,30 @@ onMounted(() => {
 </script>
 
 <template>
-    <div v-if="user.role === 'leadDev'" class="flex flex-col gap-4">
-      <h1 class="text-2xl font-bold">Gestion des testeurs</h1>
-      <p>Bienvenue, {{ user.name }} ({{ user.email }})</p>
-      <TesterCreation @testerAdded="handleTesterAdded" />
-      <TesterList :testers="testers" @testerRemoved="handleTesterRemoved" />
+  <div class="container mt-4 d-flex flex-column align-items-center">
+    <div class="card shadow-sm w-100" style="max-width: 800px;">
+      <div class="card-header bg-primary text-white">
+        <h1 class="text-center mb-0">Gestion des testeurs</h1>
+      </div>
+      <div class="card-body">
+        <div class="text-center mb-4">
+          <p class="mb-0">
+            Bienvenue, <strong>{{ user.name }}</strong> (<em>{{ user.email }}</em>)
+          </p>
+        </div>
+        <div class="mb-4">
+          <h5 class="text-center text-secondary mb-3">Ajouter un nouveau testeur</h5>
+          <div class="d-flex justify-content-center">
+            <TesterCreation @testerAdded="handleTesterAdded" />
+          </div>
+        </div>
+        <div>
+          <h5 class="text-center text-secondary mb-3">Liste des testeurs</h5>
+          <div class="d-flex justify-content-center">
+            <TesterList :testers="testers" @testerRemoved="handleTesterRemoved" />
+          </div>
+        </div>
+      </div>
     </div>
-  </template>
+  </div>
+</template>

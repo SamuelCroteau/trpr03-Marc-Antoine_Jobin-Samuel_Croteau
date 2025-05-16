@@ -44,16 +44,37 @@ async function addTester() {
 
 </script>
 <template>
-    <form @submit.prevent="addTester">
-      <div>
-        <input type="text" placeholder="Nom du testeur" v-model="newTesterName" />
-      </div>
-      <div>
-        <input type="email" placeholder="Email du testeur" v-model="newTesterEmail" />
-      </div>
-      <div>
-        <input type="password" placeholder="Mot de passe du testeur" v-model="newTesterPassword" />
-      </div>
-      <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Ajouter un testeur</button>
-    </form>
-  </template>
+  <form @submit.prevent="addTester" class="card p-4 shadow-sm">
+    <div class="mb-3">
+      <label for="testerName" class="form-label">Nom du testeur</label>
+      <input
+        type="text"
+        id="testerName"
+        class="form-control"
+        placeholder="Nom du testeur"
+        v-model="newTesterName"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="testerEmail" class="form-label">Email du testeur</label>
+      <input
+        type="email"
+        id="testerEmail"
+        class="form-control"
+        placeholder="Email du testeur"
+        v-model="newTesterEmail"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="testerPassword" class="form-label">Mot de passe</label>
+      <input
+        type="password"
+        id="testerPassword"
+        class="form-control"
+        placeholder="Mot de passe"
+        v-model="newTesterPassword"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Ajouter un testeur</button>
+  </form>
+</template>

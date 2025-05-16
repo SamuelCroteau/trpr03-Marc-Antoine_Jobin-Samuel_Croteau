@@ -36,32 +36,31 @@ onMounted(() => {
 
 </script>
 <template>
-    <div class="flex flex-col gap-4">
-        <h1 class="text-2xl font-bold">Liste des bugs</h1>
-        <button
-            class="px-4 py-2 bg-blue-500 text-white rounded"
-            @click="goToAddBugPage"
-        >
-            Ajouter un bug
+    <div class="container mt-4">
+      <h1 class="text-center mb-4">Liste des bugs</h1>
+      <div class="d-flex justify-content-end mb-3">
+        <button class="btn btn-primary" @click="goToAddBugPage">
+          Ajouter un bug
         </button>
-        <ul class="flex flex-col gap-2">
-            <li
-                v-for="(bug, index) in bugs"
-                :key="index"
-                class="p-4 border rounded flex justify-between items-center"
-            >
-                <div>
-                    <p class="font-semibold">Titre : {{ bug.title }}</p>
-                    <p>Description : {{ bug.description }}</p>
-                    <p>Catégorie : {{ bug.category }}</p>
-                </div>
-                <button
-                    class="px-4 py-2 bg-green-500 text-white rounded"
-                    @click="goToBugDetails(index)" <!-- Pass the index instead of id -->
-                >
-                    Voir les détails
-                </button>
-            </li>
-        </ul>
+      </div>
+      <ul class="list-group">
+        <li
+          v-for="(bug, index) in bugs"
+          :key="index"
+          class="list-group-item d-flex justify-content-between align-items-center"
+        >
+          <div>
+            <h5 class="mb-1">{{ bug.title }}</h5>
+            <p class="mb-1 text-muted">{{ bug.description }}</p>
+            <span class="badge bg-secondary">{{ bug.category }}</span>
+          </div>
+          <button
+            class="btn btn-success"
+            @click="goToBugDetails(index)"
+          >
+            Voir les détails
+          </button>
+        </li>
+      </ul>
     </div>
-</template>
+  </template>

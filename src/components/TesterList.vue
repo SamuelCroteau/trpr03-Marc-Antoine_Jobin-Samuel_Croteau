@@ -29,19 +29,19 @@ async function removeTester(id: number) {
 </script>
 
 <template>
-  <ul class="flex flex-col gap-2">
+  <ul class="list-group">
     <li
       v-for="tester in testers"
       :key="tester.id"
-      class="p-4 border rounded flex justify-between items-center"
+      class="list-group-item d-flex justify-content-between align-items-center"
     >
       <div>
-        <p class="font-semibold">Nom : {{ tester.name }}</p>
-        <p>Email : {{ tester.email }}</p>
-        <p>Rôle : {{ tester.role }}</p>
+        <h5 class="mb-1">Nom : {{ tester.name }}</h5>
+        <p class="mb-1 text-muted">Email : {{ tester.email }}</p>
+        <span class="badge bg-secondary">Rôle : {{ tester.role }}</span>
       </div>
       <button
-        class="px-4 py-2 bg-red-500 text-white rounded"
+        class="btn btn-danger"
         @click="removeTester(tester.id)"
       >
         Supprimer

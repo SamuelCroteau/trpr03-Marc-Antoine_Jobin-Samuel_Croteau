@@ -9,11 +9,11 @@ import { visibility } from '@/const/visibility';
 const router = useRouter();
 const bug = ref<Bug>({
     userId: 1,
-    title: 'title',
-    description: 'description',
-    stepsToReproduce: 'stepsToReproduce',
+    title: '',
+    description: '',
+    stepsToReproduce: '',
     priority: 'Low',
-    category: 'Display',
+    category: '',
     visibility: 'public'
 });
 const categories = ref([]);
@@ -51,37 +51,65 @@ fetch('http://localhost:3000/categories')
             };
 </script>
 <template>
-    <template>
-            <div class="character-creation">
-                <h1>Création d'un bug</h1>
-                <form @submit.prevent="createBug">
-                    <div>
-                        <input type="text" placeholder="titre" id="title" v-model="bug.title" />
-                    </div>
-                    <div>
-                        <input type="text" placeholder="description" id="description" v-model="bug.description" />
-                    </div>
-                    <div>
-                        <input type="text" placeholder="Steps to Reproduce" id="stepsToReproduce" v-model="bug.stepsToReproduce" />
-                    </div>
-                    <div>
-                        <select id="priority" v-model="bug.priority" >
-                            <option v-for="(option, key) in priority" :key="option.id" :value="option.value"></option>
-                        </select>
-                    </div>
-                    <div>
-                        <select id="category" v-model="bug.category">
-                            <option v-for="(category, index) in categories" :key="index" :value="category">{{ category }}</option>
-                        </select>
-                    </div>
-                    <div>
-                        <select id="visibility" v-model="bug.visibility" >
-                            <option v-for="(option, key) in priority" :key="option.id" :value="option.value"></option>
-                        </select>
-                    </div>
-                    <div v-if="errorMessage" class="error-message">{{ errorMessage }}</div>
-                    <button type="submit" class="btn btn-outline-warning">Soumettre le bug</button>
-                </form>
-            </div>
-        </template>
+    <div class="container mt-4">
+    <h1 class="text-center mb-4">Création d'un bug</h1>
+    <form @submit.prevent="createBug" class="card p-4">
+        <div class="mb-3">
+        <label for="title" class="form-label">Titre</label>
+        <input
+          type="text"
+          id="title"
+          class="form-control"
+          placeholder="Titre"
+          v-model="bug.title"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="description" class="form-label">Description</label>
+        <textarea
+          id="description"
+          class="form-control"
+          placeholder="Description"
+          rows="3"
+          v-model="bug.description"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="stepsToReproduce" class="form-label">Étapes de reproduction</label>
+        <textarea
+          id="stepsToReproduce"
+          class="form-control"
+          placeholder="Étapes de reproduction"
+          rows="3"
+          v-model="bug.stepsToReproduce"
+        ></textarea>
+      </div>
+      <div class="mb-3">
+        <label for="priority" class="form-label">Priorité</label>
+        <select id="priority" class="form-select" v-model="bug.priority">
+          <option v-for="(option, key) in priority" :key="key" :value="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="category" class="form-label">Catégorie</label>
+        <select id="category" class="form-select" v-model="bug.category">
+          <option v-for="(category, index) in categories" :key="index" :value="category">
+            {{ category }}
+          </option>
+        </select>
+      </div>
+      <div class="mb-3">
+        <label for="visibility" class="form-label">Visibilité</label>
+        <select id="visibility" class="form-select" v-model="bug.visibility">
+          <option v-for="(option, key) in visibility" :key="key" :value="option.value">
+            {{ option.label }}
+          </option>
+        </select>
+      </div>
+      <div v-if="errorMessage" class="alert alert-danger">{{ errorMessage }}</div>
+      <button type="submit" class="btn btn-primary w-100">Soumettre le bug</button>
+    </form>
+  </div>
 </template>

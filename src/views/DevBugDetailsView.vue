@@ -27,15 +27,37 @@ async function fetchBug() {
 
 </script>
 <template>
-    <div class="flex flex-col gap-4">
-        <h1 class="text-2xl font-bold">Détails du bug</h1>
-        <div class="flex flex-col gap-2">
-        <p class="text-lg font-semibold">Titre : {{ bug.title }}</p>
-        <p class="text-lg font-semibold">Description : {{ bug.description }}</p>
-        <p class="text-lg font-semibold">Démarches de récréation du bug : {{ bug.stepsToReproduce }}</p>
-        <p class="text-lg font-semibold">Priorité : {{ bug.priority }}</p>
-        <p class="text-lg font-semibold">catégorie : {{ bug.category }}</p>
-        <p class="text-lg font-semibold">Visibilité : {{ bug.visibility }}</p>
+    <div class="container mt-4">
+    <h1 class="text-center mb-4">Détails du bug</h1>
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Titre : {{ bug.title }}</h5>
+        <p class="card-text">
+          <strong>Description :</strong> {{ bug.description }}
+        </p>
+        <p class="card-text">
+          <strong>Démarches de récréation :</strong> {{ bug.stepsToReproduce }}
+        </p>
+        <p class="card-text">
+          <strong>Priorité :</strong>
+          <span
+            :class="{
+              'badge bg-danger': bug.priority === 'High',
+              'badge bg-warning text-dark': bug.priority === 'Medium',
+              'badge bg-success': bug.priority === 'Low',
+            }"
+          >
+            {{ bug.priority }}
+          </span>
+        </p>
+        <p class="card-text">
+          <strong>Catégorie :</strong>
+          <span class="badge bg-secondary">{{ bug.category }}</span>
+        </p>
+        <p class="card-text">
+          <strong>Visibilité :</strong> {{ bug.visibility }}
+        </p>
+        </div>
         </div>
     </div>
 </template>
