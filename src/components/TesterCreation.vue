@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, onMounted, defineEmits } from 'vue';
+import { ref, defineEmits } from 'vue';
+import bcrypt from 'bcryptjs';
 
 const emits = defineEmits(['testerAdded']);
 
@@ -7,13 +8,16 @@ const newTesterName = ref('');
 const newTesterEmail = ref('');
 const newTesterPassword = ref('');
 const newTesterRole = ref('tester');
+const errorMessage = ref('');
 
 async function addTester() {
   try {
+    const hashedPassword = await bcrypt.hash(newTesterPassword.value, 10);
+
     const newTester = {
       name: newTesterName.value,
       email: newTesterEmail.value,
-      password: newTesterPassword.value,
+      password: hashedPassword,
       role: newTesterRole.value,
     };
 
@@ -29,20 +33,28 @@ async function addTester() {
       throw new Error('Failed to add tester');
     }
 
-    const createdTester = await response.json();
+    const responseData = await response.json();
+    console.log('Created tester:', responseData);
+
+    const createdTester = responseData.user;
 
     emits('testerAdded', createdTester);
 
+    // reset form
     newTesterName.value = '';
     newTesterEmail.value = '';
     newTesterPassword.value = '';
     newTesterRole.value = 'tester';
+    errorMessage.value = '';
   } catch (error) {
     console.error('Error adding tester:', error);
+    errorMessage.value = 'Erreur lors de l’ajout du testeur. Veuillez réessayer.';
   }
 }
 
+
 </script>
+
 <template>
   <form @submit.prevent="addTester" class="card p-4 shadow-sm">
     <div class="mb-3">
@@ -53,6 +65,7 @@ async function addTester() {
         class="form-control"
         placeholder="Nom du testeur"
         v-model="newTesterName"
+        required
       />
     </div>
     <div class="mb-3">
@@ -63,6 +76,7 @@ async function addTester() {
         class="form-control"
         placeholder="Email du testeur"
         v-model="newTesterEmail"
+        required
       />
     </div>
     <div class="mb-3">
@@ -73,7 +87,11 @@ async function addTester() {
         class="form-control"
         placeholder="Mot de passe"
         v-model="newTesterPassword"
+        required
       />
+    </div>
+    <div v-if="errorMessage" class="alert alert-danger">
+      {{ errorMessage }}
     </div>
     <button type="submit" class="btn btn-primary w-100">Ajouter un testeur</button>
   </form>

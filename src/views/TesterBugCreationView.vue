@@ -88,7 +88,7 @@ fetch('http://localhost:3000/categories')
           <label for="priority" class="form-label">Priorité</label>
           <select id="priority" class="form-select" v-model="bug.priority">
             <option v-for="(option, key) in priority" :key="key" :value="option.value">
-              {{ option.label }}
+              {{ option.value }}
             </option>
           </select>
         </div>
@@ -104,7 +104,7 @@ fetch('http://localhost:3000/categories')
           <label for="visibility" class="form-label">Visibilité</label>
           <select id="visibility" class="form-select" v-model="bug.visibility">
             <option v-for="(option, key) in visibility" :key="key" :value="option.value">
-              {{ option.label }}
+              {{ option.value }}
             </option>
           </select>
         </div>

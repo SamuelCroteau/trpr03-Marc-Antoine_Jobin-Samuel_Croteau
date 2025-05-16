@@ -1,9 +1,6 @@
 {
   "/users*": "/600/users$1",
   "/comments*": "/644/comments$1",
-  "/bug*": "/640/bugs$1",
-  "/bugs*": "/640/bugs",
+  "/bugs*": "/640/bugs$1",
   "/categories*": "/600/categories"
-
-
 }

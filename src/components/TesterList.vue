@@ -1,14 +1,19 @@
 <script setup lang="ts">
 import { defineProps, defineEmits } from 'vue';
 
-const props = defineProps({
-  testers: {
-    type: Array,
-    required: true,
-  },
-});
+interface Tester {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+}
+
+const props = defineProps<{
+  testers: Tester[];
+}>();
 
 const emits = defineEmits(['testerRemoved']);
+
 async function removeTester(id: number) {
   try {
     console.log(`Attempting to remove tester with ID: ${id}`);
@@ -20,10 +25,11 @@ async function removeTester(id: number) {
       throw new Error('Failed to remove tester');
     }
 
-    console.log(`Tester with ID: ${id} removed successfully`); 
-    emits('testerRemoved', id);
+    console.log(`Tester with ID: ${id} removed successfully`);
+    emits('testerRemoved', id); // Notify parent component
   } catch (error) {
     console.error('Error removing tester:', error);
+    alert('Erreur lors de la suppression du testeur. Veuillez réessayer.');
   }
 }
 </script>
@@ -46,6 +52,9 @@ async function removeTester(id: number) {
       >
         Supprimer
       </button>
+    </li>
+    <li v-if="testers.length === 0" class="list-group-item text-center text-muted">
+      Aucun testeur trouvé.
     </li>
   </ul>
 </template>

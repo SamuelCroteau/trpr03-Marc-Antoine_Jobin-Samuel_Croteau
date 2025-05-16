@@ -4,8 +4,11 @@ import { useProfileStore } from '@/stores/profileStore';
 import { useRouter } from 'vue-router';
 import TesterCreation from '@/components/TesterCreation.vue';
 import TesterList from '@/components/TesterList.vue';
+import { useAuthStore } from '@/stores/authStore';
 
 const profileStore = useProfileStore();
+const authStore = useAuthStore();
+
 const router = useRouter();
 
 interface Tester {
@@ -27,21 +30,34 @@ const user = ref({
 
 async function fetchTesters() {
   try {
-    const response = await fetch('http://localhost:3000/users');
+    const token = authStore.token; 
+    const response = await fetch('http://localhost:3000/users', {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
     if (!response.ok) {
       throw new Error('Failed to fetch testers');
     }
-    testers.value = await response.json();
+
+    const data = await response.json();
+    console.log('Fetched data:', data);
+
+    testers.value = data.filter((user: Tester) => user.role === 'tester');
+    console.log('Filtered testers:', testers.value);
   } catch (error) {
     console.error('Error fetching testers:', error);
   }
 }
 
+
+
 async function fetchUserProfile() {
   try {
     await profileStore.getProfile();
     user.value = {
-      id: profileStore.userId,
+      id: authStore.getUserId,
       name: profileStore.name,
       email: profileStore.email,
       role: profileStore.isLeadDev ? 'leadDev' : 'tester',
@@ -62,6 +78,10 @@ function handleTesterAdded(newTester: Tester) {
 
 function handleTesterRemoved(testerId: number) {
   testers.value = testers.value.filter((tester) => tester.id !== testerId);
+}
+
+if (!authStore.isLoggedIn) {
+  router.push('/login');
 }
 
 onMounted(() => {
